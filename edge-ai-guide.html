@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>엣지 AI 교육 Q&A 참고자료 | RPi5 + Hailo + ONNX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Noto+Sans+KR:wght@300;400;600;700;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f7f4;
+  --white: #ffffff;
+  --surface: #f2f0eb;
+  --border: #e2ddd4;
+  --border2: #ccc8bc;
+  --orange: #e05a00;
+  --orange2: #f07820;
+  --orange-light: #fff4ee;
+  --orange-border: rgba(224,90,0,0.2);
+  --blue: #1060c8;
+  --blue-light: #eef4ff;
+  --blue-border: rgba(16,96,200,0.18);
+  --green: #1a7a40;
+  --green-light: #edfaf3;
+  --green-border: rgba(26,122,64,0.2);
+  --red: #c0140a;
+  --red-light: #fff0ef;
+  --navy: #12193a;
+  --text: #1c1c2a;
+  --muted: #6b6757;
+  --dim: #9a967f;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--white);
+  border-bottom: 2px solid var(--orange);
+  padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 52px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.nav-brand { font-family:'Syne',sans-serif; font-size:0.9rem; font-weight:800; color:var(--orange); }
+.nav-tabs { display:flex; gap:0; list-style:none; }
+.nav-tabs a {
+  display:block; padding:0 1rem; line-height:50px;
+  font-size:0.75rem; font-weight:600; color:var(--muted);
+  text-decoration:none; letter-spacing:0.06em; text-transform:uppercase;
+  border-bottom:2px solid transparent; margin-bottom:-2px; transition:color 0.2s, border-color 0.2s;
+}
+.nav-tabs a:hover { color:var(--orange); border-color:var(--orange); }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, #1e2b5a 60%, #0d3a6e 100%);
+  color: white; padding: 3.5rem 2rem 3rem; text-align: center; position: relative; overflow: hidden;
+}
+.hero::before {
+  content:''; position:absolute; inset:0;
+  background-image: linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+  background-size:40px 40px; pointer-events:none;
+}
+.hero-tag {
+  display:inline-block; background:rgba(224,90,0,0.25); border:1px solid rgba(224,90,0,0.5);
+  color:#ffb380; border-radius:4px; padding:0.25rem 0.9rem;
+  font-size:0.72rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:1.25rem;
+}
+.hero h1 { font-family:'Syne',sans-serif; font-size:clamp(1.7rem,4vw,2.9rem); font-weight:800; line-height:1.18; margin-bottom:0.9rem; }
+.hero h1 em { font-style:normal; background:linear-gradient(90deg,#ff8c42,#ffd166); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero-desc { font-size:0.96rem; color:rgba(255,255,255,0.62); max-width:560px; margin:0 auto 2rem; }
+.hero-topics { display:flex; gap:0.6rem; justify-content:center; flex-wrap:wrap; }
+.topic-chip { background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.82); border-radius:999px; padding:0.28rem 0.9rem; font-size:0.78rem; font-weight:600; }
+.topic-chip.hi { background:var(--orange); border-color:var(--orange); color:white; }
+
+/* URL BANK */
+.url-bank { background:var(--white); border-bottom:1px solid var(--border); padding:2.5rem 2.5rem; }
+.eyebrow { font-size:0.68rem; font-weight:700; color:var(--orange); letter-spacing:0.18em; text-transform:uppercase; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.6rem; }
+.eyebrow::before { content:''; width:20px; height:2px; background:var(--orange); border-radius:2px; }
+.url-bank h2 { font-family:'Syne',sans-serif; font-size:1.55rem; font-weight:800; color:var(--navy); margin-bottom:0.3rem; }
+.url-bank .sub { font-size:0.87rem; color:var(--muted); margin-bottom:2rem; }
+.url-cats { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:1.2rem; }
+.url-group { background:var(--bg); border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+.url-gh { padding:0.6rem 1.1rem; font-size:0.71rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; display:flex; align-items:center; gap:0.5rem; }
+.url-gh.rpi   { background:var(--orange-light); color:var(--orange);  border-bottom:1px solid var(--orange-border); }
+.url-gh.hailo { background:var(--blue-light);   color:var(--blue);    border-bottom:1px solid var(--blue-border); }
+.url-gh.onnx  { background:#fff8e1;             color:#a06000;        border-bottom:1px solid rgba(160,96,0,0.2); }
+.url-gh.dev   { background:var(--green-light);  color:var(--green);   border-bottom:1px solid var(--green-border); }
+.url-gh.kr    { background:#f8f0ff;             color:#7928ca;        border-bottom:1px solid rgba(121,40,202,0.2); }
+.url-gh.yt    { background:#fff0f0;             color:#c00020;        border-bottom:1px solid rgba(192,0,32,0.2); }
+.url-list { list-style:none; }
+.url-item { border-bottom:1px solid var(--border); transition:background 0.15s; }
+.url-item:last-child { border-bottom:none; }
+.url-item:hover { background:rgba(224,90,0,0.03); }
+.url-link { display:flex; align-items:flex-start; gap:0.7rem; padding:0.8rem 1.1rem; text-decoration:none; color:inherit; }
+.url-icon { font-size:0.95rem; flex-shrink:0; margin-top:2px; }
+.url-title { display:block; font-size:0.84rem; font-weight:600; color:var(--blue); line-height:1.4; margin-bottom:0.15rem; }
+.url-item:hover .url-title { text-decoration:underline; }
+.url-desc { display:block; font-size:0.76rem; color:var(--muted); line-height:1.4; }
+.url-addr { display:block; font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--dim); margin-top:0.1rem; word-break:break-all; }
+
+/* MAIN */
+.wrap { max-width:1080px; margin:0 auto; padding:0 2rem; }
+.section { padding:3rem 0; border-bottom:1px solid var(--border); }
+.section:last-of-type { border-bottom:none; }
+.sec-eyebrow { font-size:0.68rem; font-weight:700; color:var(--orange); letter-spacing:0.18em; text-transform:uppercase; margin-bottom:0.4rem; display:flex; align-items:center; gap:0.6rem; }
+.sec-eyebrow::before { content:''; width:16px; height:2px; background:var(--orange); border-radius:2px; }
+.sec-title { font-family:'Syne',sans-serif; font-size:1.55rem; font-weight:800; color:var(--navy); margin-bottom:0.3rem; }
+.sec-sub { font-size:0.88rem; color:var(--muted); margin-bottom:1.75rem; }
+
+/* CONCEPT GRID */
+.concept-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:1.1rem; }
+.cc { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1.4rem; transition:box-shadow 0.2s,transform 0.2s; }
+.cc:hover { box-shadow:0 6px 20px rgba(0,0,0,0.08); transform:translateY(-2px); }
+.cc.or { border-top:3px solid var(--orange); }
+.cc.bl { border-top:3px solid var(--blue); }
+.cc.gr { border-top:3px solid var(--green); }
+.cc-icon { font-size:1.5rem; margin-bottom:0.7rem; }
+.cc h3 { font-size:0.92rem; font-weight:700; margin-bottom:0.4rem; color:var(--navy); }
+.cc p { font-size:0.82rem; color:var(--muted); line-height:1.65; }
+
+/* TABLE */
+.tbl { width:100%; border-collapse:separate; border-spacing:0; border:1px solid var(--border); border-radius:10px; overflow:hidden; font-size:0.84rem; background:var(--white); margin-top:1.25rem; }
+.tbl th { background:var(--navy); color:white; padding:0.7rem 1rem; text-align:left; font-size:0.76rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; }
+.tbl td { padding:0.75rem 1rem; border-bottom:1px solid var(--border); vertical-align:top; }
+.tbl tr:last-child td { border-bottom:none; }
+.tbl tr:hover td { background:var(--surface); }
+.tbl td:first-child { color:var(--muted); font-size:0.8rem; font-weight:600; }
+.to { color:var(--orange); font-weight:600; }
+.tb { color:var(--blue);   font-weight:600; }
+.tg { color:var(--green);  font-weight:600; }
+.tr { color:var(--red);    font-weight:600; }
+.tm { font-family:'JetBrains Mono',monospace; font-size:0.76rem; color:var(--blue); }
+
+/* HW GRID */
+.hw-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; margin-top:1.25rem; }
+.hw-card { background:var(--white); border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+.hw-head { padding:0.8rem 1.2rem; font-size:0.78rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; }
+.hw-head.rpi   { background:var(--orange-light); color:var(--orange); border-bottom:1px solid var(--orange-border); }
+.hw-head.hailo { background:var(--blue-light);   color:var(--blue);   border-bottom:1px solid var(--blue-border); }
+.hw-rows { list-style:none; }
+.hw-row { display:flex; justify-content:space-between; align-items:center; padding:0.6rem 1.2rem; border-bottom:1px solid var(--border); font-size:0.83rem; }
+.hw-row:last-child { border-bottom:none; }
+.hw-key { color:var(--muted); }
+.hw-val { font-family:'JetBrains Mono',monospace; font-size:0.76rem; color:var(--navy); font-weight:600; }
+.hw-val.w { color:var(--red); }
+.hw-val.g { color:var(--green); }
+
+/* CODE */
+.cw { background:#1a1f35; border-radius:8px; overflow:hidden; margin:0.75rem 0; }
+.cl { background:rgba(255,255,255,0.07); padding:0.28rem 0.9rem; font-family:'JetBrains Mono',monospace; font-size:0.63rem; color:rgba(255,255,255,0.38); letter-spacing:0.1em; text-transform:uppercase; border-bottom:1px solid rgba(255,255,255,0.07); }
+.cb { padding:0.85rem 1rem; font-family:'JetBrains Mono',monospace; font-size:0.77rem; color:#a8d8ff; line-height:1.85; overflow-x:auto; }
+.cb .cm { color:#5a7080; } .cb .kw { color:#ffaa44; } .cb .st { color:#88dd88; }
+
+/* CURRICULUM */
+.cur-wrap { background:var(--white); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-top:1.25rem; }
+.cur-tbl { width:100%; border-collapse:collapse; font-size:0.83rem; }
+.cur-tbl th { background:var(--surface); padding:0.65rem 1rem; text-align:left; font-size:0.74rem; font-weight:700; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase; border-bottom:1px solid var(--border); }
+.cur-tbl td { padding:0.7rem 1rem; border-bottom:1px solid var(--border); vertical-align:top; }
+.cur-tbl tr:last-child td { border-bottom:none; }
+.cur-tbl tr:hover td { background:var(--surface); }
+.wb { display:inline-block; background:var(--orange-light); border:1px solid var(--orange-border); color:var(--orange); border-radius:4px; font-size:0.67rem; font-weight:700; padding:0.1rem 0.45rem; font-family:'JetBrains Mono',monospace; }
+.db { display:inline-block; border-radius:4px; font-size:0.67rem; font-weight:700; padding:0.1rem 0.45rem; }
+.d1 { background:var(--green-light); color:var(--green); border:1px solid var(--green-border); }
+.d2 { background:var(--orange-light); color:var(--orange); border:1px solid var(--orange-border); }
+.d3 { background:var(--red-light); color:var(--red); border:1px solid rgba(192,20,10,0.2); }
+
+/* QA */
+.qa-list { display:flex; flex-direction:column; gap:0.7rem; }
+.qa-item { background:var(--white); border:1px solid var(--border); border-radius:10px; overflow:hidden; transition:box-shadow 0.2s; }
+.qa-item:hover { box-shadow:0 4px 14px rgba(0,0,0,0.07); }
+.qa-q { width:100%; background:none; border:none; cursor:pointer; text-align:left; padding:0.95rem 1.2rem; display:flex; align-items:flex-start; gap:0.7rem; font-family:'Noto Sans KR',sans-serif; font-size:0.88rem; font-weight:600; color:var(--navy); line-height:1.5; transition:background 0.15s; }
+.qa-q:hover { background:var(--surface); }
+.qa-q.open { background:var(--orange-light); }
+.qb { background:var(--orange); color:white; font-size:0.63rem; font-weight:700; letter-spacing:0.04em; padding:0.13rem 0.48rem; border-radius:4px; flex-shrink:0; margin-top:2px; }
+.qt { flex:1; }
+.qa-arr { font-size:0.75rem; color:var(--muted); flex-shrink:0; margin-top:3px; transition:transform 0.2s; }
+.qa-q.open .qa-arr { transform:rotate(90deg); }
+.qa-a { display:none; padding:1rem 1.2rem 1.2rem; border-top:1px solid var(--border); font-size:0.85rem; color:var(--text); line-height:1.8; background:#fefefe; }
+.qa-a.open { display:block; }
+.qa-a p { margin-bottom:0.7rem; }
+.qa-a p:last-child { margin-bottom:0; }
+.qa-a strong { color:var(--navy); font-weight:600; }
+.qa-a code { font-family:'JetBrains Mono',monospace; font-size:0.78rem; background:var(--surface); border:1px solid var(--border); border-radius:4px; padding:0.08rem 0.38rem; color:var(--orange); }
+.qa-a ul, .qa-a ol { padding-left:1.35rem; margin-bottom:0.7rem; }
+.qa-a li { margin-bottom:0.28rem; }
+.hbox { background:var(--orange-light); border-left:3px solid var(--orange); border-radius:0 6px 6px 0; padding:0.65rem 1rem; margin:0.7rem 0; font-size:0.83rem; }
+.ibox { background:var(--blue-light); border-left:3px solid var(--blue); border-radius:0 6px 6px 0; padding:0.65rem 1rem; margin:0.7rem 0; font-size:0.83rem; }
+
+/* FOOTER */
+footer { background:var(--navy); color:rgba(255,255,255,0.45); padding:2rem; text-align:center; font-size:0.78rem; }
+footer a { color:rgba(255,140,66,0.8); text-decoration:none; }
+footer a:hover { color:var(--orange2); }
+
+/* REVEAL */
+.reveal { opacity:0; transform:translateY(14px); transition:opacity 0.5s ease, transform 0.5s ease; }
+.reveal.in { opacity:1; transform:none; }
+
+@media(max-width:768px){
+  .url-cats,.hw-grid,.concept-grid{grid-template-columns:1fr;}
+  nav .nav-tabs{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">▶ Edge AI Q&A 참고자료</div>
+  <ul class="nav-tabs">
+    <li><a href="#urls">참고 URL</a></li>
+    <li><a href="#edge">엣지 AI</a></li>
+    <li><a href="#npu">NPU</a></li>
+    <li><a href="#onnx">ONNX</a></li>
+    <li><a href="#curriculum">커리큘럼</a></li>
+    <li><a href="#qa">Q&amp;A</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">📋 교육 컨텐츠 제안서 발표 사전 준비 자료</div>
+  <h1>라즈베리파이 5 × Hailo-8L NPU<br><em>엣지 AI 교육 Q&amp;A 참고자료</em></h1>
+  <p class="hero-desc">발표 전 청중 사전 교육 및 질의응답 대비를 위한 참고 사이트 · 핵심 개념 · 예상 질문 정리</p>
+  <div class="hero-topics">
+    <span class="topic-chip hi">🍓 Raspberry Pi 5</span>
+    <span class="topic-chip hi">🧠 NPU / Hailo-8L</span>
+    <span class="topic-chip hi">⚡ ONNX Runtime</span>
+    <span class="topic-chip">📡 엣지 AI 개념</span>
+    <span class="topic-chip">📚 커리큘럼 설계</span>
+  </div>
+</div>
+
+<!-- ═══ URL BANK ═══ -->
+<div class="url-bank" id="urls">
+  <div class="eyebrow">🔗 핵심 참고 URL 전체 모음</div>
+  <h2>발표·Q&A에 필요한 모든 참고 사이트</h2>
+  <p class="sub">공식 문서 · 튜토리얼 · 커뮤니티 링크를 카테고리별로 정리했습니다</p>
+
+  <div class="url-cats">
+
+    <!-- 라즈베리파이 공식 -->
+    <div class="url-group">
+      <div class="url-gh rpi">🍓 Raspberry Pi 공식</div>
+      <ul class="url-list">
+        <li class="url-item">
+          <a class="url-link" href="https://www.raspberrypi.com/software/" target="_blank">
+            <span class="url-icon">💿</span>
+            <div>
+              <span class="url-title">Raspberry Pi Imager 다운로드</span>
+              <span class="url-desc">OS를 microSD에 굽는 공식 툴. 64-bit OS 선택 필수</span>
+              <span class="url-addr">raspberrypi.com/software/</span>
+            </div>
+          </a>
+        </li>
+        <li class="url-item">
+          <a class="url-link" href="https://www.raspberrypi.com/documentation/computers/ai.html" target="_blank">
+            <span class="url-icon">📖</span>
+            <div>
+              <span class="url-title">Raspberry Pi AI 공식 문서</span>
+              <span class="url-desc">Hailo 4.18 + TAPPAS 3.29.1 설치 가이드 공식 버전</span>
+              <span class="url-addr">raspberrypi.com/documentation/computers/ai.html</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Hailo 공식 -->
+    <div class="url-group">
+      <div class="url-gh hailo">🧠 Hailo 공식</div>
+      <ul class="url-list">
+        <li class="url-item">
+          <a class="url-link" href="https://hailo.ai/products/hailo-software/model-explorer/" target="_blank">
+            <span class="url-icon">🔍</span>
+            <div>
+              <span class="url-title">Hailo Model Explorer</span>
+              <span class="url-desc">Hailo-8L용 RetinaFace · ArcFace 등 .HEF 모델 다운로드 공식 허브</span>
+              <span class="url-addr">hailo.ai/products/hailo-software/model-explorer/</span>
+            </div>
+          </a>
+        </li>
+        <li class="url-item">
+          <a class="url-link" href="https://github.com/hailo-ai/hailo_model_zoo" target="_blank">
+            <span class="url-icon">📁</span>
+            <div>
+              <span class="url-title">Hailo Model Zoo (GitHub)</span>
+              <span class="url-desc">YOLO · RetinaFace 등 공식 최적화 모델 저장소</span>
+              <span class="url-addr">github.com/hailo-ai/hailo_model_zoo</span>
+            </div>
+          </a>
+        </li>
+        <li class="url-item">
+          <a class="url-link" href="https://hailo.ai" target="_blank">
+            <span class="url-icon">🏢</span>
+            <div>
+              <span class="url-title">Hailo 공식 홈페이지</span>
+              <span class="url-desc">엣지 AI 가속기 제품군 · 소프트웨어 스택 · 개발자 리소스</span>
+              <span class="url-addr">hailo.ai</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ONNX Runtime -->
+    <div class="url-group">
+      <div class="url-gh onnx">⚡ ONNX Runtime</div>
+      <ul class="url-list">
+        <li class="url-item">
+          <a class="url-link" href="https://onnxruntime.ai/" target="_blank">
+            <span class="url-icon">⚡</span>
+            <div>
+              <span class="url-title">ONNX Runtime 공식 사이트</span>
+              <span class="url-desc">Microsoft 오픈소스 추론 엔진 — ARM/RPi 포함 멀티플랫폼 지원</span>
+              <span class="url-addr">onnxruntime.ai</span>
+            </div>
+          </a>
+        </li>
+        <li class="url-item">
+          <a class="url-link" href="https://onnxruntime.ai/docs/tutorials/iot-edge/rasp-pi-cv.html" target="_blank">
+            <span class="url-icon">🍓</span>
+            <div>
+              <span class="url-title">ONNX Runtime × Raspberry Pi 공식 튜토리얼</span>
+              <span class="url-desc">RPi에서 Computer Vision 모델 추론 실행 공식 가이드</span>
+              <span class="url-addr">onnxruntime.ai/docs/tutorials/iot-edge/rasp-pi-cv.html</span>
+            </div>
+          </a>
+        </li>
+        <li class="url-item">
+          <a class="url-link" href="https://github.com/microsoft/onnxruntime" target="_blank">
+            <span class="url-icon">💻</span>
+            <div>
+              <span class="url-title">ONNX Runtime GitHub</span>
+              <span class="url-desc">소스코드 · Raspberry Pi 빌드 가이드 · Issue 트래커</span>
+              <span class="url-addr">github.com/microsoft/onnxruntime</span>
+            </div>
+          </a>
+        </li>
+        <li class="url-item">
+          <a class="url-link" href="https://onnx.ai/" target="_blank">
+            <span class="url-icon">🌐</span>
+            <div>
+              <span class="url-title">ONNX 공식 사이트 (포맷 표준)</span>
+              <span class="url-desc">Open Neural Network Exchange — AI 모델 표준 포맷 공식 홈페이지</span>
+              <span class="url-addr">onnx.ai</span>
+            </div>
+          </a>
+        </li>
+        <li class="url-item">
+          <a class="url-link" href="https://github.com/onnx/models" target="_blank">
+            <span class="url-icon">📦</span>
+            <div>
+              <span class="url-title">ONNX Model Zoo</span>
+              <span class="url-desc">사전 학습된 ONNX 모델 저장소 — YOLOv8, ResNet, MobileNet 등</span>
+              <span class="url-addr">github.com/onnx/models</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 실습 튜토리얼 -->
+    <div class="url-group">
+      <div class="url-gh dev">🛠 실습 튜토리얼 (YOLOv8 · RetinaFace)</div>
+      <ul class="url-list">
+        <li class="url-item">
+          <a class="url-link" href="https://docs.ultralytics.com/models/yolov8/" target="_blank">
+            <span class="url-icon">🎯</span>
+            <div>
+              <span class="url-title">YOLOv8 공식 문서 (Ultralytics)</span>
+              <span class="url-desc">YOLOv8 구조 · 학습 · ONNX 변환 · 배포 전 과정 공식 가이드</span>
+              <span class="url-addr">docs.ultralytics.com/models/yolov8/</span>
+            </div>
+          </a>
+        </li>
+        <li class="url-item">
+          <a class="url-link" href="https://medium.com/@sanjoyg_39525" target="_blank">
+            <span class="url-icon">✍️</span>
+            <div>
+              <span class="url-title">sanjoyg Medium 블로그 (핵심 실습 참고)</span>
+              <span class="url-desc">RPi5 + Hailo-8L 실습 시리즈의 핵심 저자 블로그</span>
+              <span class="url-addr">medium.com/@sanjoyg_39525</span>
+            </div>
+          </a>
+        </li>
+        <li class="url-item">
+          <a class="url-link" href="https://medium.com/@sanjoyg_39525/face-detection-on-rpi5-using-hailo8l-0e247ecc7c28" target="_blank">
+            <span class="url-icon">👤</span>
+            <div>
+              <span class="url-title">얼굴 탐지 구현 (RPi5 + Hailo-8L)</span>
+              <span class="url-desc">RetinaFace + GStreamer 파이프라인으로 실시간 얼굴 탐지 구현</span>
+              <span class="url-addr">medium.com/@sanjoyg_39525/face-detection-on-rpi5...</span>
+            </div>
+          </a>
+        </li>
+        <li class="url-item">
+          <a class="url-link" href="https://medium.com/@sanjoyg_39525/face-recognition-matching-on-rpi5-using-hailo8l-75a00aeb49bc" target="_blank">
+            <span class="url-icon">🪪</span>
+            <div>
+              <span class="url-title">얼굴 인식 Recognition 구현</span>
+              <span class="url-desc">ArcFace 기반 특징점 매칭 및 신원 인식 구현 상세 가이드</span>
+              <span class="url-addr">medium.com/@sanjoyg_39525/face-recognition-matching...</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 한국 커뮤니티 -->
+    <div class="url-group">
+      <div class="url-gh kr">🇰🇷 한국 커뮤니티</div>
+      <ul class="url-list">
+        <li class="url-item">
+          <a class="url-link" href="https://cafe.naver.com/iloveai/30024" target="_blank">
+            <span class="url-icon">☕</span>
+            <div>
+              <span class="url-title">네이버 일러브AI — Hailo 얼굴 인식 시스템 구현</span>
+              <span class="url-desc">HailoRT 4.18 기반 RPi5 얼굴 인식 상세 한국어 가이드</span>
+              <span class="url-addr">cafe.naver.com/iloveai/30024</span>
+            </div>
+          </a>
+        </li>
+        <li class="url-item">
+          <a class="url-link" href="https://cafe.naver.com/vl/4577" target="_blank">
+            <span class="url-icon">📄</span>
+            <div>
+              <span class="url-title">수정된 FaceRecognition 스크립트</span>
+              <span class="url-desc">RPi 카메라 소스 전환용 facerecognition.sh 수정 버전 공유</span>
+              <span class="url-addr">cafe.naver.com/vl/4577</span>
+            </div>
+          </a>
+        </li>
+        <li class="url-item">
+          <a class="url-link" href="https://blog.naver.com/roboholic84/223485800255" target="_blank">
+            <span class="url-icon">🤖</span>
+            <div>
+              <span class="url-title">Roboholic84 블로그 — Hailo 실습 정리</span>
+              <span class="url-desc">RPi5 + Hailo 환경 구축 실습 정리 한국어 블로그</span>
+              <span class="url-addr">blog.naver.com/roboholic84/223485800255</span>
+            </div>
+          </a>
+        </li>
+        <li class="url-item">
+          <a class="url-link" href="https://cafe.naver.com/cortexsh/6453" target="_blank">
+            <span class="url-icon">🔬</span>
+            <div>
+              <span class="url-title">CortexSH 카페 — NPU 개념 및 실습</span>
+              <span class="url-desc">NPU 개념 · 엣지 AI 가속기 활용 · 실습 예제 커뮤니티 자료</span>
+              <span class="url-addr">cafe.naver.com/cortexsh/6453</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- YouTube -->
+    <div class="url-group">
+      <div class="url-gh yt">▶ 유튜브 강의</div>
+      <ul class="url-list">
+        <li class="url-item">
+          <a class="url-link" href="https://www.youtube.com/watch?v=LN6RGQI3CGw" target="_blank">
+            <span class="url-icon">🎬</span>
+            <div>
+              <span class="url-title">RPi5 × Hailo-8L 엣지 AI 마스터 가이드 (원본 강의)</span>
+              <span class="url-desc">사람 감지 · 동일 인물 확인 · 쓰러짐 감지 구현 전 과정</span>
+              <span class="url-addr">youtube.com/watch?v=LN6RGQI3CGw</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div><!-- /url-cats -->
+</div><!-- /url-bank -->
+
+<!-- ═══ MAIN ═══ -->
+<div class="wrap">
+
+  <!-- 엣지 AI -->
+  <div class="section reveal" id="edge">
+    <div class="sec-eyebrow">01 / 엣지 AI 핵심 개념</div>
+    <h2 class="sec-title">엣지 AI란 무엇인가?</h2>
+    <p class="sec-sub">클라우드 없이 현장에서 직접 AI를 실행 — "CCTV 자체에 두뇌를 달아주는 것"</p>
+
+    <div class="concept-grid">
+      <div class="cc or">
+        <div class="cc-icon">📡</div>
+        <h3>엣지 AI 정의</h3>
+        <p>데이터가 생성되는 현장(카메라, 센서)에서 AI 추론을 직접 실행하는 방식. 클라우드로 데이터를 보낼 필요 없이 로컬에서 즉시 분석하고 결과를 냅니다.</p>
+      </div>
+      <div class="cc bl">
+        <div class="cc-icon">⚖️</div>
+        <h3>Cloud AI vs Edge AI</h3>
+        <p><strong>클라우드:</strong> 영상 → 서버 전송 → 분석 → 결과 수신. 인터넷 필수, 수백ms 지연, 보안 위험.<br>
+        <strong>엣지:</strong> 영상 → 현장 즉시 분석 → 결과만 전송. 오프라인 가능, 수ms 반응, 프라이버시 보장.</p>
+      </div>
+      <div class="cc gr">
+        <div class="cc-icon">✅</div>
+        <h3>엣지 AI 핵심 장점</h3>
+        <p>인터넷 없이 동작 · 즉각 반응 · 민감 데이터 외부 유출 없음 · 서버 비용 절감 · LED 전구 수준(5~15W) 저전력 운영</p>
+      </div>
+    </div>
+
+    <table class="tbl">
+      <thead><tr><th>구분</th><th>클라우드 AI</th><th>엣지 AI (RPi5+Hailo)</th></tr></thead>
+      <tbody>
+        <tr><td>인터넷 필요</td><td class="tr">필수</td><td class="tg">불필요</td></tr>
+        <tr><td>응답 지연</td><td class="tr">수십~수백 ms</td><td class="tg">수 ms (실시간)</td></tr>
+        <tr><td>데이터 보안</td><td class="tr">외부 서버 전송</td><td class="tg">완전 로컬 처리</td></tr>
+        <tr><td>서버 비용</td><td class="tr">지속 발생</td><td class="tg">초기 HW만</td></tr>
+        <tr><td>전력 소비</td><td class="to">서버 수백 W</td><td class="tg">~15W</td></tr>
+        <tr><td>오프라인 동작</td><td class="tr">불가</td><td class="tg">완전 가능</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- NPU -->
+  <div class="section reveal" id="npu">
+    <div class="sec-eyebrow">02 / NPU 핵심 개념</div>
+    <h2 class="sec-title">NPU란? — GPU와 무엇이 다른가</h2>
+    <p class="sec-sub">AI 추론 전용으로 설계된 초저전력 고효율 프로세서</p>
+
+    <div class="concept-grid">
+      <div class="cc or">
+        <div class="cc-icon">🧠</div>
+        <h3>NPU 정의</h3>
+        <p>Neural Processing Unit. ML/AI 추론 전용 칩. CPU·GPU처럼 범용 연산은 못하지만 AI 추론에서는 압도적 효율. 한국어: <strong>AI 가속기</strong>.</p>
+      </div>
+      <div class="cc bl">
+        <div class="cc-icon">🏭</div>
+        <h3>GPU — 학습(Training) 전용</h3>
+        <p>AI 모델을 가르치는 <strong>대형 공장</strong>. 방대한 데이터 학습 최적화. 수백~수천 W 소비, 데이터센터 환경 필요. 추론도 되지만 비효율적.</p>
+      </div>
+      <div class="cc gr">
+        <div class="cc-icon">🎰</div>
+        <h3>NPU — 추론(Inference) 전용</h3>
+        <p>학습된 모델을 현장에서 빠르게 실행하는 <strong>현장 자판기</strong>. 새 학습 불가. 수 W 저전력, 초소형, 현장 설치 가능. Hailo-8L = 13 TOPS.</p>
+      </div>
+    </div>
+
+    <div class="hw-grid">
+      <div class="hw-card">
+        <div class="hw-head rpi">🍓 Raspberry Pi 5</div>
+        <ul class="hw-rows">
+          <li class="hw-row"><span class="hw-key">CPU</span><span class="hw-val">Cortex-A76 2.4GHz 쿼드코어</span></li>
+          <li class="hw-row"><span class="hw-key">RAM 권장</span><span class="hw-val g">8GB LPDDR4X</span></li>
+          <li class="hw-row"><span class="hw-key">RAM 최소</span><span class="hw-val w">4GB (매우 빠듯)</span></li>
+          <li class="hw-row"><span class="hw-key">NPU 연결</span><span class="hw-val">PCIe 2.0 인터페이스</span></li>
+          <li class="hw-row"><span class="hw-key">카메라</span><span class="hw-val">22핀 Mini CSI</span></li>
+          <li class="hw-row"><span class="hw-key">전원</span><span class="hw-val w">5V 5A 27W 필수</span></li>
+          <li class="hw-row"><span class="hw-key">OS</span><span class="hw-val w">64-bit aarch64 필수</span></li>
+        </ul>
+      </div>
+      <div class="hw-card">
+        <div class="hw-head hailo">🧠 Hailo-8L AI Accelerator</div>
+        <ul class="hw-rows">
+          <li class="hw-row"><span class="hw-key">성능</span><span class="hw-val g">13 TOPS (초당 13조 연산)</span></li>
+          <li class="hw-row"><span class="hw-key">폼팩터</span><span class="hw-val">M.2 Key-M / AI HAT+</span></li>
+          <li class="hw-row"><span class="hw-key">연결</span><span class="hw-val">PCIe FFC 케이블</span></li>
+          <li class="hw-row"><span class="hw-key">HailoRT</span><span class="hw-val">v4.18.0</span></li>
+          <li class="hw-row"><span class="hw-key">TAPPAS</span><span class="hw-val">v3.29.1</span></li>
+          <li class="hw-row"><span class="hw-key">쿨링</span><span class="hw-val w">능동 쿨러 필수</span></li>
+          <li class="hw-row"><span class="hw-key">역할</span><span class="hw-val g">추론(Inference) 전담</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <table class="tbl">
+      <thead><tr><th>비교 항목</th><th>CPU 단독 (RPi5만)</th><th>NPU 추가 (Hailo-8L)</th></tr></thead>
+      <tbody>
+        <tr><td>YOLOv8 추론 FPS</td><td class="tr">~2–5 FPS (버벅임)</td><td class="tg">~60 FPS (실시간)</td></tr>
+        <tr><td>전력 효율</td><td class="to">CPU 풀로드 급증</td><td class="tg">NPU 전담으로 효율적</td></tr>
+        <tr><td>실시간 처리</td><td class="tr">어려움</td><td class="tg">가능</td></tr>
+        <tr><td>멀티 태스크</td><td class="tr">CPU 100% 점유</td><td class="tg">CPU 여유 유지</td></tr>
+        <tr><td>추가 비용</td><td class="tg">없음</td><td class="to">HAT 구매 필요</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ONNX Runtime -->
+  <div class="section reveal" id="onnx">
+    <div class="sec-eyebrow">03 / ONNX Runtime</div>
+    <h2 class="sec-title">ONNX Runtime × Raspberry Pi</h2>
+    <p class="sec-sub">Microsoft 오픈소스 추론 엔진 — Hailo 없이도 RPi에서 AI 추론 가능한 입문 경로</p>
+
+    <div class="concept-grid">
+      <div class="cc or">
+        <div class="cc-icon">⚡</div>
+        <h3>ONNX Runtime이란?</h3>
+        <p>Microsoft 오픈소스 AI 추론 엔진. ONNX 포맷 모델을 Windows, Linux, ARM(RPi 포함) 등 다양한 플랫폼에서 최적화 실행. pip 하나로 설치.</p>
+      </div>
+      <div class="cc bl">
+        <div class="cc-icon">🔄</div>
+        <h3>ONNX 포맷이란?</h3>
+        <p>Open Neural Network Exchange. PyTorch, TensorFlow 등 다양한 프레임워크 모델을 하나의 표준 포맷으로 변환. <strong>"AI 모델의 PDF 포맷"</strong>.</p>
+      </div>
+      <div class="cc gr">
+        <div class="cc-icon">🍓</div>
+        <h3>RPi에서 ONNX Runtime</h3>
+        <p>pip 하나로 설치. YOLOv8 → ONNX 변환 후 RPi에서 직접 실행. Hailo 없이도 기본 추론 가능. 교육 입문 단계에 최적.</p>
+      </div>
+    </div>
+
+    <div class="cw">
+      <div class="cl">BASH — RPi에서 ONNX Runtime 설치 및 테스트</div>
+      <div class="cb">
+<span class="cm"># ONNX Runtime 설치 (ARM64 지원)</span><br>
+<span class="kw">pip install</span> onnxruntime<br><br>
+<span class="cm"># YOLOv8 모델 ONNX 변환 (PC에서)</span><br>
+<span class="kw">pip install</span> ultralytics<br>
+<span class="kw">yolo</span> export model=yolov8n.pt format=onnx imgsz=640<br><br>
+<span class="cm"># RPi에서 ONNX 모델 추론 (Python)</span><br>
+<span class="kw">import</span> onnxruntime <span class="kw">as</span> ort<br>
+session = ort.InferenceSession(<span class="st">"yolov8n.onnx"</span>)<br>
+outputs = session.run(<span class="kw">None</span>, {<span class="st">"images"</span>: input_tensor})
+      </div>
+    </div>
+
+    <table class="tbl">
+      <thead><tr><th>비교</th><th>ONNX Runtime (CPU)</th><th>Hailo-8L NPU</th></tr></thead>
+      <tbody>
+        <tr><td>추가 HW 필요</td><td class="tg">불필요</td><td class="to">HAT 구매 필요</td></tr>
+        <tr><td>설치</td><td class="tm">pip install onnxruntime</td><td class="tm">sudo apt install hailo-all</td></tr>
+        <tr><td>추론 속도</td><td class="to">보통 (CPU 의존)</td><td class="tg">월등히 빠름 (13 TOPS)</td></tr>
+        <tr><td>모델 포맷</td><td class="tm">.onnx</td><td class="tm">.hef (Hailo 전용)</td></tr>
+        <tr><td>모델 변환</td><td class="tg">PyTorch→ONNX 용이</td><td class="to">Hailo DFC 컴파일 필요</td></tr>
+        <tr><td>학습 곡선</td><td class="tg">낮음 (Python 표준)</td><td class="to">높음 (GStreamer)</td></tr>
+        <tr><td>교육 단계</td><td class="tg">입문 — 먼저 학습 권장</td><td class="tb">심화 — 이후 적합</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 커리큘럼 -->
+  <div class="section reveal" id="curriculum">
+    <div class="sec-eyebrow">04 / 교육 커리큘럼 설계</div>
+    <h2 class="sec-title">RPi5 + 엣지 AI 교육 커리큘럼 구성안</h2>
+    <p class="sec-sub">개념 이해 → ONNX Runtime 입문 → Hailo NPU 심화 단계 구성 권장</p>
+
+    <div class="cur-wrap">
+      <table class="cur-tbl">
+        <thead>
+          <tr><th>단계</th><th>주제</th><th>핵심 내용</th><th>실습</th><th>난이도</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="wb">DAY 1-1</span></td><td><strong>엣지 AI 개념</strong></td><td>Cloud vs Edge · NPU vs GPU · AI 학습 vs 추론</td><td>슬라이드 · 토론</td><td><span class="db d1">기초</span></td></tr>
+          <tr><td><span class="wb">DAY 1-2</span></td><td><strong>하드웨어 셋업</strong></td><td>RPi5 OS 설치 · PCIe 활성화 · Hailo HAT 장착</td><td>직접 설치 실습</td><td><span class="db d1">기초</span></td></tr>
+          <tr><td><span class="wb">DAY 2-1</span></td><td><strong>ONNX Runtime 입문</strong></td><td>ONNX 포맷 이해 · pip 설치 · 기본 추론 실행</td><td>Python 코드 실행</td><td><span class="db d1">기초</span></td></tr>
+          <tr><td><span class="wb">DAY 2-2</span></td><td><strong>YOLOv8 × ONNX</strong></td><td>모델 ONNX 변환 · RPi에서 객체 탐지</td><td>실시간 카메라 탐지</td><td><span class="db d2">중급</span></td></tr>
+          <tr><td><span class="wb">DAY 3-1</span></td><td><strong>Hailo 소프트웨어 스택</strong></td><td>HailoRT · TAPPAS · GStreamer 파이프라인 구조</td><td>hailortcli 테스트</td><td><span class="db d2">중급</span></td></tr>
+          <tr><td><span class="wb">DAY 3-2</span></td><td><strong>YOLOv8 실시간 탐지</strong></td><td>60FPS 객체 탐지 · 카메라 연동 · 결과 시각화</td><td>실시간 영상 탐지</td><td><span class="db d2">중급</span></td></tr>
+          <tr><td><span class="wb">DAY 4-1</span></td><td><strong>RetinaFace 얼굴 탐지</strong></td><td>GStreamer 파이프라인 · libcamerasrc 연동</td><td>실시간 얼굴 탐지</td><td><span class="db d3">심화</span></td></tr>
+          <tr><td><span class="wb">DAY 4-2</span></td><td><strong>ArcFace 얼굴 인식</strong></td><td>특징점 추출 · 신원 매칭 · 출입 관리 시스템</td><td>인물 등록 · 인식</td><td><span class="db d3">심화</span></td></tr>
+          <tr><td><span class="wb">최종</span></td><td><strong>실전 프로젝트</strong></td><td>사람 감지 + 동일 인물 확인 + 쓰러짐 감지 통합</td><td>프로젝트 발표</td><td><span class="db d3">심화</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Q&A -->
+  <div class="section reveal" id="qa">
+    <div class="sec-eyebrow">05 / 발표 Q&A 예상 질문</div>
+    <h2 class="sec-title">청중 예상 질문 &amp; 핵심 답변</h2>
+    <p class="sec-sub">클릭하면 상세 답변이 펼쳐집니다</p>
+
+    <div class="qa-list">
+
+      <div class="qa-item">
+        <button class="qa-q" onclick="toggleQA(this)">
+          <span class="qb">NPU</span>
+          <span class="qt">NPU와 GPU의 차이를 쉽게 설명해주세요</span>
+          <span class="qa-arr">▶</span>
+        </button>
+        <div class="qa-a">
+          <p><strong>비유:</strong> GPU는 "대형 공장"입니다. AI 모델을 처음부터 가르치는 학습(Training)에 최적화, 수백~수천 와트 소비, 데이터센터에 있습니다.</p>
+          <p>NPU는 "현장 자판기"입니다. 이미 학습된 AI를 빠르게 실행(추론)하는 데 특화. 새것을 배우진 못하지만 작고, 전기 적게 먹고, 어디든 설치 가능합니다.</p>
+          <div class="hbox"><strong>핵심:</strong> GPU = 학습용(데이터센터) · NPU = 추론용(현장 엣지). Hailo-8L은 13 TOPS(초당 13조 연산)를 수 와트로 구현합니다.</div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <button class="qa-q" onclick="toggleQA(this)">
+          <span class="qb">EDGE AI</span>
+          <span class="qt">왜 클라우드 AI 대신 엣지 AI를 써야 하나요?</span>
+          <span class="qa-arr">▶</span>
+        </button>
+        <div class="qa-a">
+          <ul>
+            <li><strong>지연 시간:</strong> 클라우드는 수십~수백 ms 지연. 쓰러짐 감지 알람처럼 즉각 반응이 필요한 시스템에서 치명적입니다.</li>
+            <li><strong>프라이버시:</strong> 병원·공장·가정 CCTV 영상이 외부 서버로 나가면 개인정보 문제 발생. 엣지는 영상이 기기 밖으로 나가지 않습니다.</li>
+            <li><strong>비용:</strong> 클라우드는 사용량 비례 비용이 계속 발생. RPi5+Hailo는 초기 약 30만원 투자 후 추가 비용 없음.</li>
+            <li><strong>오프라인:</strong> 인터넷이 끊겨도 동작. 공장·현장·도서 지역 등에서 필수.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <button class="qa-q" onclick="toggleQA(this)">
+          <span class="qb">ONNX</span>
+          <span class="qt">ONNX Runtime과 Hailo를 함께 쓰나요, 아니면 둘 중 선택인가요?</span>
+          <span class="qa-arr">▶</span>
+        </button>
+        <div class="qa-a">
+          <p><strong>역할이 다르므로 함께 사용하거나 상황에 맞게 선택합니다.</strong></p>
+          <div class="ibox"><strong>ONNX Runtime:</strong> Hailo 없이 RPi CPU에서 AI 추론 가능. pip 설치만으로 시작. 교육 입문에 적합. 속도는 느리지만 범용적.</div>
+          <div class="hbox"><strong>Hailo NPU:</strong> .onnx 모델을 .hef로 컴파일해 NPU에서 실행. 60FPS 실시간 처리. 압도적 속도지만 학습 곡선이 높음.</div>
+          <p><strong>실전 워크플로우:</strong> PC에서 PyTorch 학습 → ONNX 변환 → ONNX Runtime으로 RPi 호환 검증 → Hailo 컴파일러로 .hef 변환 → NPU에서 최고 성능 실행</p>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <button class="qa-q" onclick="toggleQA(this)">
+          <span class="qb">HW</span>
+          <span class="qt">RAM이 왜 8GB가 필요한가요? 4GB면 안 되나요?</span>
+          <span class="qa-arr">▶</span>
+        </button>
+        <div class="qa-a">
+          <p>4GB도 동작하지만 매우 빠듯합니다. 실제 메모리 분포:</p>
+          <ul>
+            <li>OS (Raspberry Pi OS 64-bit): <strong>~1.5GB</strong></li>
+            <li>비디오 처리 (Full HD OpenCV): <strong>500MB ~ 1GB</strong></li>
+            <li>Hailo 런타임 + 드라이버: <strong>수백 MB</strong></li>
+            <li>AI 모델 (YOLOv8 등): <strong>10MB ~ 100MB+</strong></li>
+          </ul>
+          <div class="hbox">총합이 4GB에 근접 → 멀티 카메라나 고해상도 처리 시 스왑 발생, 성능 급락. <strong>8GB = 안정적 엣지 AI의 표준</strong>.</div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <button class="qa-q" onclick="toggleQA(this)">
+          <span class="qb">SETUP</span>
+          <span class="qt">PCIe를 별도로 활성화해야 하는 이유가 뭔가요?</span>
+          <span class="qa-arr">▶</span>
+        </button>
+        <div class="qa-a">
+          <p>Raspberry Pi 5는 전력 소비·안전을 위해 기본적으로 PCIe를 비활성화합니다.</p>
+          <p>Hailo-8L은 PCIe로 Pi와 통신하므로, <code>/boot/firmware/config.txt</code>에 <code>dtparam=pciex1</code>을 추가해 수동 활성화가 필요합니다.</p>
+          <div class="hbox">이 설정 없이 Hailo 장착 시 <code>lspci</code>에서 장치 미인식 → 가장 자주 발생하는 초보 실수입니다.</div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <button class="qa-q" onclick="toggleQA(this)">
+          <span class="qb">MODEL</span>
+          <span class="qt">YOLOv8을 선택한 이유는 무엇인가요?</span>
+          <span class="qa-arr">▶</span>
+        </button>
+        <div class="qa-a">
+          <ul>
+            <li><strong>Hailo 최적화:</strong> Hailo 가속기가 YOLO 아키텍처에 특화되어 최고 시너지 발휘</li>
+            <li><strong>모델 크기 선택지:</strong> Nano~XLarge까지 RPi5 성능에 맞게 선택 가능</li>
+            <li><strong>다목적:</strong> 객체 탐지 외 분할·포즈 추정·분류까지 하나의 프레임워크로 커버</li>
+            <li><strong>ONNX 연계:</strong> <code>yolo export format=onnx</code> 한 줄로 변환</li>
+            <li><strong>커뮤니티:</strong> Ultralytics 공식 지원 + 풍부한 한국어 자료</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <button class="qa-q" onclick="toggleQA(this)">
+          <span class="qb">COST</span>
+          <span class="qt">전체 시스템 구축 비용은 얼마나 드나요?</span>
+          <span class="qa-arr">▶</span>
+        </button>
+        <div class="qa-a">
+          <ul>
+            <li>Raspberry Pi 5 (8GB): <strong>약 8~10만원</strong></li>
+            <li>Hailo-8L AI HAT+: <strong>약 7~10만원</strong></li>
+            <li>Camera Module v3: <strong>약 3~5만원</strong></li>
+            <li>microSD 64GB+: <strong>약 1~2만원</strong></li>
+            <li>5V 5A 어댑터: <strong>약 1.5만원</strong></li>
+            <li>능동 쿨러: <strong>약 0.5~1만원</strong></li>
+          </ul>
+          <div class="hbox"><strong>총합: 약 25~30만원</strong> — 클라우드 서버 비용과 비교 불가할 정도로 저렴. 전기세도 LED 전구 수준(5~15W)으로 거의 없음.</div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <button class="qa-q" onclick="toggleQA(this)">
+          <span class="qb">CAMERA</span>
+          <span class="qt">구형 카메라 v1.3을 Pi 5에 연결할 수 있나요?</span>
+          <span class="qa-arr">▶</span>
+        </button>
+        <div class="qa-a">
+          <p>Camera v1.3은 15핀, Pi 5 CSI 포트는 22핀이라 그대로는 연결 불가합니다.</p>
+          <ul>
+            <li><strong>필요 부품:</strong> 15→22핀 FFC 변환 케이블 별도 구매 ("15-22 pin camera adapter cable" 검색)</li>
+            <li><strong>주의:</strong> 금속 접점 방향 확인 필수 — 반대 방향이면 인식 안됨</li>
+            <li><strong>소프트웨어:</strong> OV5647 센서 지원을 위해 <code>sudo apt full-upgrade</code> 최신 업데이트 필수</li>
+            <li><strong>확인:</strong> <code>libcamera-hello</code> 실행 후 화면 출력 확인</li>
+          </ul>
+          <div class="hbox">신규 프로젝트에는 Camera Module 2 또는 3 사용을 강력 권장합니다.</div>
+        </div>
+      </div>
+
+    </div><!-- /qa-list -->
+  </div>
+
+</div><!-- /wrap -->
+
+<footer>
+  <div style="margin-bottom:0.75rem;color:rgba(255,255,255,0.75);font-weight:700;">📋 엣지 AI 교육 컨텐츠 제안서 Q&A 참고자료 — 루트브릭스 · 데이터공작소 TFT</div>
+  <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:0.5rem;">
+    <a href="https://www.raspberrypi.com/documentation/computers/ai.html" target="_blank">RPi AI Docs</a>
+    <a href="https://hailo.ai" target="_blank">Hailo Official</a>
+    <a href="https://onnxruntime.ai/" target="_blank">ONNX Runtime</a>
+    <a href="https://onnx.ai/" target="_blank">ONNX 포맷</a>
+    <a href="https://docs.ultralytics.com/models/yolov8/" target="_blank">YOLOv8 Docs</a>
+    <a href="https://medium.com/@sanjoyg_39525" target="_blank">sanjoyg Medium</a>
+    <a href="https://cafe.naver.com/iloveai/30024" target="_blank">일러브AI 카페</a>
+    <a href="https://blog.naver.com/roboholic84/223485800255" target="_blank">Roboholic84</a>
+    <a href="https://cafe.naver.com/cortexsh/6453" target="_blank">CortexSH</a>
+    <a href="https://www.youtube.com/watch?v=LN6RGQI3CGw" target="_blank">YouTube 강의</a>
+  </div>
+</footer>
+
+<script>
+function toggleQA(btn) {
+  const ans = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.qa-q.open').forEach(b => { b.classList.remove('open'); b.nextElementSibling.classList.remove('open'); });
+  if (!isOpen) { btn.classList.add('open'); ans.classList.add('open'); }
+}
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);} }), {threshold:0.06});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
