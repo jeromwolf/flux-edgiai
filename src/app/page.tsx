@@ -1057,6 +1057,564 @@ export default function Home() {
             </ul>
           </div>
 
+          {/* 한국 기업 AI 블로그 */}
+          <div className="url-group">
+            <div className="url-gh corp">
+              {"\uD83C\uDFE2"} 한국 기업 AI 블로그
+            </div>
+            <ul className="url-list">
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://news.samsungsemiconductor.com/kr/%EC%B0%A8%EC%84%B8%EB%8C%80-%EB%94%A5%EB%9F%AC%EB%8B%9D-%EA%B8%B0%EC%88%A0-%EC%98%A8-%EB%94%94%EB%B0%94%EC%9D%B4%EC%8A%A4on-device-ai%EB%9E%80/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDCF1"}</span>
+                  <div>
+                    <span className="url-title">
+                      삼성반도체 — 온디바이스(On-Device) AI란?
+                    </span>
+                    <span className="url-desc">
+                      온디바이스 AI 개념, 클라우드 AI 차이, 엑시노스 NPU 적용 사례 한국어
+                      해설
+                    </span>
+                    <span className="url-addr">
+                      news.samsungsemiconductor.com/kr/...
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://semiconductor.samsung.com/kr/news-events/tech-blog/on-the-edge-how-edge-ai-is-reshaping-the-future/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83C\uDF10"}</span>
+                  <div>
+                    <span className="url-title">
+                      삼성반도체 — 엣지 AI가 미래를 재구성하다
+                    </span>
+                    <span className="url-desc">
+                      엣지 AI 정의, 장점, 산업별 활용 사례를 삼성 반도체 관점에서 설명
+                    </span>
+                    <span className="url-addr">
+                      semiconductor.samsung.com/kr/.../edge-ai...
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://semiconductor.samsung.com/kr/support/tools-resources/dictionary/the-neural-processing-unit-npu-a-brainy-next-generation-semiconductor/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83E\uDDE0"}</span>
+                  <div>
+                    <span className="url-title">
+                      삼성반도체 용어사전 — NPU(신경 처리 장치)
+                    </span>
+                    <span className="url-desc">
+                      NPU 정의, CPU/GPU와의 차이, 스마트폰 내 역할을 삼성이 정리한 공식
+                      용어 해설
+                    </span>
+                    <span className="url-addr">
+                      semiconductor.samsung.com/kr/.../dictionary/npu...
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://www.samsungsds.com/kr/insights/ondevice-ai-and-cloud-ai.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\u2696\uFE0F"}</span>
+                  <div>
+                    <span className="url-title">
+                      삼성SDS — 클라우드 AI vs 온디바이스 AI
+                    </span>
+                    <span className="url-desc">
+                      두 아키텍처의 기술적 차이와 상호보완 관계를 상세하게 정리
+                    </span>
+                    <span className="url-addr">
+                      samsungsds.com/kr/.../ondevice-ai-and-cloud-ai...
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://news.skhynix.co.kr/all-around-ai-5/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDCBE"}</span>
+                  <div>
+                    <span className="url-title">
+                      SK하이닉스 — 스마트폰과 온디바이스 AI의 미래
+                    </span>
+                    <span className="url-desc">
+                      온디바이스 AI 개념, 메모리 반도체 연관성, NPU/HBM 역할 초보자 친화
+                      설명
+                    </span>
+                    <span className="url-addr">
+                      news.skhynix.co.kr/all-around-ai-5/
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://news.lxsemicon.com/9581"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDD2C"}</span>
+                  <div>
+                    <span className="url-title">
+                      LX세미콘 — NPU란? AI 반도체 패러다임의 주인공
+                    </span>
+                    <span className="url-desc">
+                      CPU/GPU/NPU 3자 비교, NPU가 AI 반도체 주인공이 된 이유, TOPS 해석
+                      방법
+                    </span>
+                    <span className="url-addr">
+                      news.lxsemicon.com/9581
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://blogs.nvidia.co.kr/blog/deeplearning_training/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDFE2"}</span>
+                  <div>
+                    <span className="url-title">
+                      NVIDIA 한국어 — 딥러닝 훈련과 추론의 차이
+                    </span>
+                    <span className="url-desc">
+                      AI 학습(Training)과 추론(Inference) 차이를 비유와 함께 한국어로 쉽게
+                      설명
+                    </span>
+                    <span className="url-addr">
+                      blogs.nvidia.co.kr/blog/deeplearning_training/
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://blogs.nvidia.co.kr/blog/what-is-edge-computing/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDFE9"}</span>
+                  <div>
+                    <span className="url-title">
+                      NVIDIA 한국어 — 엣지 컴퓨팅이란?
+                    </span>
+                    <span className="url-desc">
+                      엣지 컴퓨팅 개념, 클라우드와 차이, 활용 사례를 NVIDIA가 한국어로 설명
+                    </span>
+                    <span className="url-addr">
+                      blogs.nvidia.co.kr/blog/what-is-edge-computing/
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://devocean.sk.com/blog/techBoardDetail.do?ID=166712&boardType=techBlog"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDCE1"}</span>
+                  <div>
+                    <span className="url-title">
+                      SK Devocean — 온디바이스 AI, 무엇이 다를까요?
+                    </span>
+                    <span className="url-desc">
+                      클라우드 AI vs 온디바이스 AI 차이, NPU 필요성을 SK텔레콤 관점에서
+                      설명
+                    </span>
+                    <span className="url-addr">
+                      devocean.sk.com/.../166712
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://www.lgcns.com/blog/it-trend/51820/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83C\uDFED"}</span>
+                  <div>
+                    <span className="url-title">
+                      LG CNS — 빅테크 기업의 온디바이스 AI 활용법
+                    </span>
+                    <span className="url-desc">
+                      구글·애플·삼성 등 빅테크 온디바이스 AI 전략, NPU 칩 역할, 하이브리드
+                      AI 개념
+                    </span>
+                    <span className="url-addr">
+                      lgcns.com/blog/it-trend/51820/
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://blog-ko.superb-ai.com/real-time-ai-inference-edge-ai-innovation/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\u26A1"}</span>
+                  <div>
+                    <span className="url-title">
+                      Superb AI — 현장 실시간 AI 추론의 혁신, 엣지 AI란?
+                    </span>
+                    <span className="url-desc">
+                      엣지 AI 정의, AI 추론 개념, 실시간 처리 필요성을 체계적으로 한국어
+                      설명
+                    </span>
+                    <span className="url-addr">
+                      blog-ko.superb-ai.com/.../edge-ai-innovation/
+                    </span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* AI 용어 사전 · 개념 해설 */}
+          <div className="url-group">
+            <div className="url-gh ref">
+              {"\uD83D\uDCD6"} AI 용어 사전 {"\u00B7"} 개념 해설
+            </div>
+            <ul className="url-list">
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://learn.microsoft.com/ko-kr/azure/machine-learning/concept-onnx?view=azureml-api-2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDCD8"}</span>
+                  <div>
+                    <span className="url-title">
+                      Microsoft Learn 한국어 — ONNX 런타임 및 모델
+                    </span>
+                    <span className="url-desc">
+                      ONNX 개념, ONNX Runtime 역할, Python API까지 Microsoft 공식 한국어
+                      문서
+                    </span>
+                    <span className="url-addr">
+                      learn.microsoft.com/ko-kr/.../concept-onnx
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://namu.wiki/w/%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%20%EC%B9%A9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83C\uDF31"}</span>
+                  <div>
+                    <span className="url-title">
+                      나무위키 — 인공지능 칩 (NPU {"\u00B7"} AI 가속기)
+                    </span>
+                    <span className="url-desc">
+                      CPU, GPU, NPU, TPU, FPGA 등 AI 칩 전반을 망라한 한국어 위키
+                    </span>
+                    <span className="url-addr">
+                      namu.wiki/w/인공지능 칩
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://namu.wiki/w/%EC%98%A8%EB%94%94%EB%B0%94%EC%9D%B4%EC%8A%A4%20%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDCF2"}</span>
+                  <div>
+                    <span className="url-title">
+                      나무위키 — 온디바이스 인공지능
+                    </span>
+                    <span className="url-desc">
+                      온디바이스 AI 정의, 역사, 장단점, 주요 기기별 사례 한국어 위키 정리
+                    </span>
+                    <span className="url-addr">
+                      namu.wiki/w/온디바이스 인공지능
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://ko.wikipedia.org/wiki/%EA%B0%9C%EB%B0%A9%ED%98%95_%EC%8B%A0%EA%B2%BD%EB%A7%9D_%EA%B5%90%ED%99%98"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDCD9"}</span>
+                  <div>
+                    <span className="url-title">
+                      위키백과 — 개방형 신경망 교환 (ONNX)
+                    </span>
+                    <span className="url-desc">
+                      ONNX 역사, 개발 주체(Meta+Microsoft), 지원 프레임워크 한국어
+                      위키백과
+                    </span>
+                    <span className="url-addr">
+                      ko.wikipedia.org/wiki/개방형_신경망_교환
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://ko.wikipedia.org/wiki/AI_%EA%B0%80%EC%86%8D%EA%B8%B0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDCDA"}</span>
+                  <div>
+                    <span className="url-title">
+                      위키백과 — AI 가속기
+                    </span>
+                    <span className="url-desc">
+                      AI 가속기의 정의와 분류를 정리한 한국어 위키백과 항목
+                    </span>
+                    <span className="url-addr">
+                      ko.wikipedia.org/wiki/AI_가속기
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://www.aitimes.kr/news/articleView.html?idxno=30227"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDCF0"}</span>
+                  <div>
+                    <span className="url-title">
+                      인공지능신문 — NPU란? 온디바이스 생성 AI의 핵심
+                    </span>
+                    <span className="url-desc">
+                      NPU 구조적 특성, 이기종 컴퓨팅 개념, 온디바이스 AI 역할 심층 해설
+                    </span>
+                    <span className="url-addr">
+                      aitimes.kr/news/.../30227
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://www.aitimes.com/news/articleView.html?idxno=137640"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDCBB"}</span>
+                  <div>
+                    <span className="url-title">
+                      AI타임스 — GPU를 대신할 새로운 AI 반도체, NPU
+                    </span>
+                    <span className="url-desc">
+                      GPU와 NPU 차이, NPU 등장 배경과 특성을 시리즈 기사로 설명
+                    </span>
+                    <span className="url-addr">
+                      aitimes.com/news/.../137640
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://ahha.ai/2024/08/13/ondeviceai/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDCA1"}</span>
+                  <div>
+                    <span className="url-title">
+                      AHHA Labs — 온디바이스 AI란? (2024 급부상 트렌드)
+                    </span>
+                    <span className="url-desc">
+                      온디바이스 AI 개념, 클라우드 AI 비교, 경량화 필요성을 산업 관점에서
+                      설명
+                    </span>
+                    <span className="url-addr">
+                      ahha.ai/2024/08/13/ondeviceai/
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://ahha.ai/2024/12/09/ai-accelerator-2/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83C\uDFAF"}</span>
+                  <div>
+                    <span className="url-title">
+                      AHHA Labs — AI 가속기 선택 가이드 (NPU{"\u00B7"}GPU{"\u00B7"}VPU)
+                    </span>
+                    <span className="url-desc">
+                      NPU TOPS 개념, 가속기 유형별 비교, 산업 현장 선택 기준 상세 설명
+                    </span>
+                    <span className="url-addr">
+                      ahha.ai/2024/12/09/ai-accelerator-2/
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://gaussian37.github.io/dl-concept-quantization/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDD22"}</span>
+                  <div>
+                    <span className="url-title">
+                      gaussian37 — 딥러닝 양자화(Quantization)와 QAT
+                    </span>
+                    <span className="url-desc">
+                      FP32{"\u2192"}INT8 변환 원리, 양자화 3종류, 모델 크기 1/4 효과를
+                      코드와 함께 설명
+                    </span>
+                    <span className="url-addr">
+                      gaussian37.github.io/dl-concept-quantization/
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://www.mobilint.com/post/what-is-an-npu-a-simplified-guide-to-get-you-started"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83E\uDDE9"}</span>
+                  <div>
+                    <span className="url-title">
+                      Mobilint — NPU란 무엇인가요? 반도체 쉽게 알아가기
+                    </span>
+                    <span className="url-desc">
+                      NPU 전문 반도체 기업이 직접 작성한 NPU 입문 한국어 설명
+                    </span>
+                    <span className="url-addr">
+                      mobilint.com/post/what-is-an-npu...
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://brunch.co.kr/@synabreu/97"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83C\uDF3F"}</span>
+                  <div>
+                    <span className="url-title">
+                      Brunch — TinyML 세계에 여러분을 초대합니다!
+                    </span>
+                    <span className="url-desc">
+                      TinyML 개념, 초저전력 임베디드 디바이스 머신러닝, Arduino 활용 한국어
+                      소개
+                    </span>
+                    <span className="url-addr">
+                      brunch.co.kr/@synabreu/97
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://www.qualcomm.com/news/onq/2024/02/what-is-an-npu-and-why-is-it-key-to-unlocking-on-device-generative-ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDD35"}</span>
+                  <div>
+                    <span className="url-title">
+                      Qualcomm — NPU란? 온디바이스 생성 AI의 핵심 (영문)
+                    </span>
+                    <span className="url-desc">
+                      Snapdragon NPU 구조, INT4 지원 45 TOPS, 온디바이스 생성 AI 원리
+                      공식 설명
+                    </span>
+                    <span className="url-addr">
+                      qualcomm.com/news/.../what-is-an-npu...
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://www.ibm.com/think/topics/npu-vs-gpu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDD37"}</span>
+                  <div>
+                    <span className="url-title">
+                      IBM — NPU vs GPU: 무엇이 다른가? (영문)
+                    </span>
+                    <span className="url-desc">
+                      NPU와 GPU 아키텍처 차이, 에너지 효율, 사용 사례를 IBM이 체계적으로
+                      비교
+                    </span>
+                    <span className="url-addr">
+                      ibm.com/think/topics/npu-vs-gpu
+                    </span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
           {/* YouTube */}
           <div className="url-group">
             <div className="url-gh yt">

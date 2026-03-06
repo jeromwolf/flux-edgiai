@@ -92,6 +92,8 @@ nav {
 .url-gh.dev   { background:var(--green-light);  color:var(--green);   border-bottom:1px solid var(--green-border); }
 .url-gh.kr    { background:#f8f0ff;             color:#7928ca;        border-bottom:1px solid rgba(121,40,202,0.2); }
 .url-gh.yt    { background:#fff0f0;             color:#c00020;        border-bottom:1px solid rgba(192,0,32,0.2); }
+.url-gh.corp { background:#e8f5f5; color:#0d7377; border-bottom:1px solid rgba(13,115,119,0.2); }
+.url-gh.ref  { background:#f0eeff; color:#5b21b6; border-bottom:1px solid rgba(91,33,182,0.2); }
 .url-list { list-style:none; }
 .url-item { border-bottom:1px solid var(--border); transition:background 0.15s; }
 .url-item:last-child { border-bottom:none; }
