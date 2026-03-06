@@ -125,6 +125,16 @@ nav {
 .cc h3 { font-size:0.92rem; font-weight:700; margin-bottom:0.4rem; color:var(--navy); }
 .cc p { font-size:0.82rem; color:var(--muted); line-height:1.65; }
 
+/* TERM GRID */
+.term-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:1rem; margin-top:1.25rem; }
+.term-card { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1.2rem 1.3rem; transition:box-shadow 0.2s; }
+.term-card:hover { box-shadow:0 4px 14px rgba(0,0,0,0.07); }
+.term-word { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.5rem; }
+.term-en { font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--orange); font-weight:600; background:var(--orange-light); border:1px solid var(--orange-border); border-radius:4px; padding:0.15rem 0.5rem; }
+.term-kr { font-size:0.92rem; font-weight:700; color:var(--navy); }
+.term-desc { font-size:0.82rem; color:var(--muted); line-height:1.7; }
+.term-desc strong { color:var(--navy); }
+
 /* TABLE */
 .tbl { width:100%; border-collapse:separate; border-spacing:0; border:1px solid var(--border); border-radius:10px; overflow:hidden; font-size:0.84rem; background:var(--white); margin-top:1.25rem; }
 .tbl th { background:var(--navy); color:white; padding:0.7rem 1rem; text-align:left; font-size:0.76rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; }
@@ -205,6 +215,6 @@ footer a:hover { color:var(--orange2); }
 .reveal.in { opacity:1; transform:none; }
 
 @media(max-width:768px){
-  .url-cats,.hw-grid,.concept-grid{grid-template-columns:1fr;}
+  .url-cats,.hw-grid,.concept-grid,.term-grid{grid-template-columns:1fr;}
   nav .nav-tabs{display:none;}
 }

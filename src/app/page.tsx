@@ -56,6 +56,9 @@ export default function Home() {
             <a href="#onnx">ONNX</a>
           </li>
           <li>
+            <a href="#terms">용어정리</a>
+          </li>
+          <li>
             <a href="#curriculum">커리큘럼</a>
           </li>
           <li>
@@ -2009,13 +2012,113 @@ export default function Home() {
           </table>
         </div>
 
+        {/* 핵심 용어 정리 */}
+        <div className="section reveal" id="terms" ref={setRevealRef(3)}>
+          <div className="sec-eyebrow">04 / 핵심 용어 정리</div>
+          <h2 className="sec-title">엣지 AI 핵심 용어 한눈에 보기</h2>
+          <p className="sec-sub">발표{"\u00B7"}교육에서 자주 나오는 용어를 쉬운 비유와 함께 정리했습니다</p>
+
+          <div className="term-grid">
+            <div className="term-card">
+              <div className="term-word">
+                <span className="term-en">On-Device AI</span>
+                <span className="term-kr">온디바이스 AI</span>
+              </div>
+              <p className="term-desc">
+                클라우드 서버 없이 <strong>기기 자체에서</strong> AI를 실행하는 기술. 스마트폰{"\u00B7"}CCTV{"\u00B7"}자동차 등 기기 내부의 NPU가 직접 추론을 처리합니다. 엣지 AI의 한 형태로, <strong>{"\u201C"}내 손 안의 AI{"\u201D"}</strong>라고 이해하면 됩니다.
+              </p>
+            </div>
+            <div className="term-card">
+              <div className="term-word">
+                <span className="term-en">Inference</span>
+                <span className="term-kr">추론 (인퍼런스)</span>
+              </div>
+              <p className="term-desc">
+                이미 학습된 AI 모델이 새로운 데이터를 보고 <strong>판단을 내리는 과정</strong>. 예: 카메라 영상을 보고 {"\u201C"}이것은 사람이다{"\u201D"}라고 판별. 학습(Training)은 모델을 가르치는 것, 추론은 <strong>시험을 보는 것</strong>에 비유합니다.
+              </p>
+            </div>
+            <div className="term-card">
+              <div className="term-word">
+                <span className="term-en">Training</span>
+                <span className="term-kr">학습 (트레이닝)</span>
+              </div>
+              <p className="term-desc">
+                대량의 데이터로 AI 모델의 가중치를 조정하는 과정. GPU 서버에서 수시간~수일 소요. <strong>{"\u201C"}학교에서 공부하는 것{"\u201D"}</strong>. 한번 학습된 모델은 엣지 기기에서 추론만 수행합니다.
+              </p>
+            </div>
+            <div className="term-card">
+              <div className="term-word">
+                <span className="term-en">Quantization</span>
+                <span className="term-kr">양자화 (경량화)</span>
+              </div>
+              <p className="term-desc">
+                AI 모델의 정밀도를 <strong>FP32 {"\u2192"} INT8</strong>로 낮춰 모델 크기를 1/4로 줄이고 추론 속도를 2~4배 높이는 기술. 화질을 100점에서 95점으로 약간 낮추되 <strong>속도를 4배 빠르게</strong> 만드는 트레이드오프입니다.
+              </p>
+            </div>
+            <div className="term-card">
+              <div className="term-word">
+                <span className="term-en">TOPS</span>
+                <span className="term-kr">초당 연산 능력</span>
+              </div>
+              <p className="term-desc">
+                <strong>Tera Operations Per Second</strong>. AI 칩의 성능을 나타내는 단위. 1 TOPS = 초당 1조 번 연산. Hailo-8L은 <strong>13 TOPS</strong>, Hailo-8은 26 TOPS. 스마트폰 NPU는 보통 10~40 TOPS 수준입니다.
+              </p>
+            </div>
+            <div className="term-card">
+              <div className="term-word">
+                <span className="term-en">HEF</span>
+                <span className="term-kr">Hailo 실행 파일</span>
+              </div>
+              <p className="term-desc">
+                <strong>Hailo Executable Format</strong>. Hailo NPU에서 실행되는 전용 모델 포맷. ONNX 모델을 Hailo Dataflow Compiler로 <strong>컴파일</strong>해서 생성합니다. <strong>{"\u201C"}.onnx {"\u2192"} .hef 변환{"\u201D"}</strong>이 Hailo 워크플로우의 핵심 단계입니다.
+              </p>
+            </div>
+            <div className="term-card">
+              <div className="term-word">
+                <span className="term-en">GStreamer</span>
+                <span className="term-kr">미디어 파이프라인</span>
+              </div>
+              <p className="term-desc">
+                영상{"\u00B7"}음성 데이터를 <strong>파이프처럼 연결</strong>해 처리하는 멀티미디어 프레임워크. Hailo TAPPAS는 GStreamer로 {"\u201C"}카메라 입력 {"\u2192"} NPU 추론 {"\u2192"} 결과 표시{"\u201D"}를 <strong>하나의 파이프라인</strong>으로 구성합니다.
+              </p>
+            </div>
+            <div className="term-card">
+              <div className="term-word">
+                <span className="term-en">ONNX</span>
+                <span className="term-kr">개방형 신경망 교환</span>
+              </div>
+              <p className="term-desc">
+                <strong>Open Neural Network Exchange</strong>. PyTorch, TensorFlow 등 어떤 프레임워크에서 만든 모델이든 <strong>하나의 표준 포맷</strong>으로 변환할 수 있는 {"\u201C"}AI 모델의 PDF{"\u201D"}. 다양한 하드웨어에서 실행 가능하게 해줍니다.
+              </p>
+            </div>
+            <div className="term-card">
+              <div className="term-word">
+                <span className="term-en">Edge Computing</span>
+                <span className="term-kr">엣지 컴퓨팅</span>
+              </div>
+              <p className="term-desc">
+                데이터를 중앙 서버로 보내지 않고 <strong>데이터 발생 지점(엣지)</strong>에서 처리하는 분산 컴퓨팅 구조. 엣지 AI는 이 구조 위에서 AI 추론을 수행하는 것입니다. <strong>{"\u201C"}현장에서 바로 처리{"\u201D"}</strong>가 핵심입니다.
+              </p>
+            </div>
+            <div className="term-card">
+              <div className="term-word">
+                <span className="term-en">Model Zoo</span>
+                <span className="term-kr">모델 저장소</span>
+              </div>
+              <p className="term-desc">
+                미리 학습된 AI 모델을 다운로드할 수 있는 <strong>온라인 저장소</strong>. 직접 학습 없이 바로 사용 가능. Hailo Model Zoo(.hef), ONNX Model Zoo(.onnx) 등이 있으며, <strong>{"\u201C"}AI 앱스토어{"\u201D"}</strong>에 비유할 수 있습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* 커리큘럼 */}
         <div
           className="section reveal"
           id="curriculum"
-          ref={setRevealRef(3)}
+          ref={setRevealRef(4)}
         >
-          <div className="sec-eyebrow">04 / 교육 커리큘럼 설계</div>
+          <div className="sec-eyebrow">05 / 교육 커리큘럼 설계</div>
           <h2 className="sec-title">
             RPi5 + 엣지 AI 교육 커리큘럼 구성안
           </h2>
@@ -2173,8 +2276,8 @@ export default function Home() {
         </div>
 
         {/* Q&A */}
-        <div className="section reveal" id="qa" ref={setRevealRef(4)}>
-          <div className="sec-eyebrow">05 / 발표 Q&A 예상 질문</div>
+        <div className="section reveal" id="qa" ref={setRevealRef(5)}>
+          <div className="sec-eyebrow">06 / 발표 Q&A 예상 질문</div>
           <h2 className="sec-title">청중 예상 질문 &amp; 핵심 답변</h2>
           <p className="sec-sub">클릭하면 상세 답변이 펼쳐집니다</p>
 
@@ -2473,6 +2576,197 @@ export default function Home() {
                   신규 프로젝트에는 Camera Module 2 또는 3 사용을 강력
                   권장합니다.
                 </div>
+              </div>
+            </div>
+
+            {/* Q9 */}
+            <div className="qa-item">
+              <button
+                className={`qa-q${openQA === 8 ? " open" : ""}`}
+                onClick={() => toggleQA(8)}
+              >
+                <span className="qb">용어</span>
+                <span className="qt">
+                  온디바이스 AI와 엣지 AI는 같은 건가요?
+                </span>
+                <span className="qa-arr">{"\u25B6"}</span>
+              </button>
+              <div className={`qa-a${openQA === 8 ? " open" : ""}`}>
+                <p><strong>비슷하지만 범위가 다릅니다.</strong></p>
+                <ul>
+                  <li><strong>엣지 AI:</strong> 클라우드가 아닌 현장(엣지)에서 AI를 실행하는 모든 것. 공장 서버, 게이트웨이, 로봇 등 포함.</li>
+                  <li><strong>온디바이스 AI:</strong> 엣지 AI의 부분집합. 스마트폰, CCTV, 센서 등 최종 기기(device) 자체에서 AI 실행.</li>
+                </ul>
+                <div className="hbox"><strong>쉽게 말하면:</strong> 엣지 AI = {"\u201C"}현장 AI{"\u201D"} (넓은 개념), 온디바이스 AI = {"\u201C"}기기 내장 AI{"\u201D"} (좁은 개념). RPi5+Hailo 프로젝트는 <strong>둘 다에 해당</strong>합니다.</div>
+              </div>
+            </div>
+
+            {/* Q10 */}
+            <div className="qa-item">
+              <button
+                className={`qa-q${openQA === 9 ? " open" : ""}`}
+                onClick={() => toggleQA(9)}
+              >
+                <span className="qb">개념</span>
+                <span className="qt">
+                  AI {"\u2018"}학습(Training){"\u2019"}과 {"\u2018"}추론(Inference){"\u2019"}의 차이는 무엇인가요?
+                </span>
+                <span className="qa-arr">{"\u25B6"}</span>
+              </button>
+              <div className={`qa-a${openQA === 9 ? " open" : ""}`}>
+                <p><strong>비유:</strong> 학습은 <strong>{"\u201C"}학교에서 공부하는 것{"\u201D"}</strong>, 추론은 <strong>{"\u201C"}시험을 보는 것{"\u201D"}</strong>입니다.</p>
+                <ul>
+                  <li><strong>학습(Training):</strong> 수만 장의 사진을 보여주며 {"\u201C"}이것이 사람이다{"\u201D"}를 가르침. GPU 서버에서 수시간~수일 소요. 전기 많이 사용.</li>
+                  <li><strong>추론(Inference):</strong> 학습된 모델이 새 사진을 보고 {"\u201C"}이것은 사람이다{"\u201D"}라고 판단. NPU에서 수 밀리초 소요. 저전력.</li>
+                </ul>
+                <div className="hbox"><strong>핵심:</strong> RPi5+Hailo는 <strong>추론 전용</strong>. 학습은 PC/서버의 GPU에서, 추론은 현장의 NPU에서 나눠서 수행합니다.</div>
+              </div>
+            </div>
+
+            {/* Q11 */}
+            <div className="qa-item">
+              <button
+                className={`qa-q${openQA === 10 ? " open" : ""}`}
+                onClick={() => toggleQA(10)}
+              >
+                <span className="qb">최적화</span>
+                <span className="qt">
+                  양자화(Quantization)란 무엇이고, 왜 필요한가요?
+                </span>
+                <span className="qa-arr">{"\u25B6"}</span>
+              </button>
+              <div className={`qa-a${openQA === 10 ? " open" : ""}`}>
+                <p>AI 모델의 숫자 정밀도를 <strong>32비트(FP32) {"\u2192"} 8비트(INT8)</strong>로 줄이는 기술입니다.</p>
+                <ul>
+                  <li><strong>모델 크기:</strong> 약 1/4로 축소 (200MB {"\u2192"} 50MB)</li>
+                  <li><strong>추론 속도:</strong> 2~4배 향상</li>
+                  <li><strong>정확도 손실:</strong> 1~3% 수준 (거의 체감 불가)</li>
+                </ul>
+                <div className="ibox"><strong>비유:</strong> 4K 영상을 Full HD로 변환하는 것과 비슷합니다. 눈으로 보기엔 거의 같지만 파일 크기와 처리 속도는 크게 개선됩니다.</div>
+                <div className="hbox"><strong>엣지 AI에서 필수:</strong> RPi5처럼 메모리와 연산 능력이 제한된 기기에서는 양자화 없이 대형 모델을 돌리기 어렵습니다.</div>
+              </div>
+            </div>
+
+            {/* Q12 */}
+            <div className="qa-item">
+              <button
+                className={`qa-q${openQA === 11 ? " open" : ""}`}
+                onClick={() => toggleQA(11)}
+              >
+                <span className="qb">스펙</span>
+                <span className="qt">
+                  TOPS란 무엇이고, Hailo-8L의 13 TOPS는 어느 정도인가요?
+                </span>
+                <span className="qa-arr">{"\u25B6"}</span>
+              </button>
+              <div className={`qa-a${openQA === 11 ? " open" : ""}`}>
+                <p><strong>TOPS = Tera Operations Per Second.</strong> 초당 수행할 수 있는 AI 연산 횟수입니다.</p>
+                <ul>
+                  <li>1 TOPS = <strong>초당 1조 번</strong> 연산</li>
+                  <li>Hailo-8L = <strong>13 TOPS</strong> (YOLOv8 Nano 기준 60+ FPS 가능)</li>
+                  <li>Hailo-8 = 26 TOPS (더 복잡한 모델 가능)</li>
+                  <li>비교: 스마트폰 NPU는 보통 10~40 TOPS, NVIDIA Jetson Orin Nano는 40 TOPS</li>
+                </ul>
+                <div className="hbox"><strong>주의:</strong> TOPS만으로 성능을 비교할 수 없습니다. 칩 아키텍처, 지원 모델, 소프트웨어 최적화도 중요한 요소입니다.</div>
+              </div>
+            </div>
+
+            {/* Q13 */}
+            <div className="qa-item">
+              <button
+                className={`qa-q${openQA === 12 ? " open" : ""}`}
+                onClick={() => toggleQA(12)}
+              >
+                <span className="qb">비교</span>
+                <span className="qt">
+                  Hailo-8과 Hailo-8L의 차이는 무엇인가요?
+                </span>
+                <span className="qa-arr">{"\u25B6"}</span>
+              </button>
+              <div className={`qa-a${openQA === 12 ? " open" : ""}`}>
+                <ul>
+                  <li><strong>Hailo-8:</strong> 26 TOPS, 더 복잡한 모델 지원, 가격 높음</li>
+                  <li><strong>Hailo-8L:</strong> 13 TOPS, 교육{"\u00B7"}입문용 최적, 가격 저렴, RPi AI Kit 기본 탑재</li>
+                </ul>
+                <div className="ibox"><strong>{"\u2018"}L{"\u2019"}은 {"\u2018"}Light{"\u2019"}의 약자.</strong> 성능은 절반이지만 가격도 절반. 교육 목적이라면 Hailo-8L으로 충분합니다. YOLOv8 Nano 기준 60FPS 이상 나옵니다.</div>
+                <p>실제 산업 적용 시 더 복잡한 모델(YOLOv8 Large 등)이 필요하면 Hailo-8 업그레이드를 검토합니다.</p>
+              </div>
+            </div>
+
+            {/* Q14 */}
+            <div className="qa-item">
+              <button
+                className={`qa-q${openQA === 13 ? " open" : ""}`}
+                onClick={() => toggleQA(13)}
+              >
+                <span className="qb">비교</span>
+                <span className="qt">
+                  라즈베리파이 대신 NVIDIA Jetson을 쓰면 안 되나요?
+                </span>
+                <span className="qa-arr">{"\u25B6"}</span>
+              </button>
+              <div className={`qa-a${openQA === 13 ? " open" : ""}`}>
+                <p>Jetson도 훌륭한 선택이지만, <strong>교육 목적에서는 RPi5+Hailo가 더 적합</strong>합니다.</p>
+                <table className="tbl">
+                  <thead><tr><th>항목</th><th>RPi5 + Hailo-8L</th><th>Jetson Orin Nano</th></tr></thead>
+                  <tbody>
+                    <tr><td>가격</td><td className="tg">{"\u007E"}25만원</td><td className="to">{"\u007E"}30~50만원</td></tr>
+                    <tr><td>커뮤니티</td><td className="tg">압도적 (전세계)</td><td className="to">전문가 중심</td></tr>
+                    <tr><td>학습 곡선</td><td className="tg">낮음 (Linux 기초)</td><td className="to">높음 (JetPack SDK)</td></tr>
+                    <tr><td>GPIO/센서</td><td className="tg">풍부 (40핀 GPIO)</td><td className="to">제한적</td></tr>
+                    <tr><td>AI 성능</td><td className="to">13 TOPS</td><td className="tg">40 TOPS + GPU</td></tr>
+                    <tr><td>학습 가능</td><td className="tr">불가 (추론만)</td><td className="tg">간단한 학습 가능</td></tr>
+                  </tbody>
+                </table>
+                <div className="hbox"><strong>결론:</strong> 교육{"\u00B7"}IoT 프로젝트 {"\u2192"} RPi5+Hailo, 산업{"\u00B7"}연구용 고성능 {"\u2192"} Jetson. 두 플랫폼 모두 배워두면 좋습니다.</div>
+              </div>
+            </div>
+
+            {/* Q15 */}
+            <div className="qa-item">
+              <button
+                className={`qa-q${openQA === 14 ? " open" : ""}`}
+                onClick={() => toggleQA(14)}
+              >
+                <span className="qb">활용</span>
+                <span className="qt">
+                  실제 산업 현장에서 어떤 분야에 활용되나요?
+                </span>
+                <span className="qa-arr">{"\u25B6"}</span>
+              </button>
+              <div className={`qa-a${openQA === 14 ? " open" : ""}`}>
+                <ul>
+                  <li><strong>스마트 팩토리:</strong> 제품 불량 검출, 작업자 안전 모니터링, 설비 이상 감지</li>
+                  <li><strong>스마트 시티:</strong> 교통 흐름 분석, 주차장 만차 감지, 불법 주정차 단속</li>
+                  <li><strong>헬스케어:</strong> 환자 낙상 감지, 움직임 패턴 분석, 비대면 활력 징후 모니터링</li>
+                  <li><strong>리테일:</strong> 고객 동선 분석, 무인 매장 관리, 재고 모니터링</li>
+                  <li><strong>농업:</strong> 작물 병해충 탐지, 가축 행동 분석, 자동 분류</li>
+                  <li><strong>보안:</strong> 침입 탐지, 얼굴 인식 출입 관리, 이상 행동 감지</li>
+                </ul>
+                <div className="hbox"><strong>공통점:</strong> 모두 <strong>{"\u201C"}현장에서 즉시 판단{"\u201D"}</strong>이 필요한 분야. 영상을 클라우드로 보내면 느리고 비싸고 보안 위험 {"\u2192"} 엣지 AI가 해답.</div>
+              </div>
+            </div>
+
+            {/* Q16 */}
+            <div className="qa-item">
+              <button
+                className={`qa-q${openQA === 15 ? " open" : ""}`}
+                onClick={() => toggleQA(15)}
+              >
+                <span className="qb">확장</span>
+                <span className="qt">
+                  RPi5에 카메라 여러 대를 동시에 연결할 수 있나요?
+                </span>
+                <span className="qa-arr">{"\u25B6"}</span>
+              </button>
+              <div className={`qa-a${openQA === 15 ? " open" : ""}`}>
+                <p>RPi5는 <strong>CSI 포트 2개</strong>를 제공하므로 카메라 2대까지 직접 연결 가능합니다.</p>
+                <ul>
+                  <li><strong>2대:</strong> 두 CSI 포트에 각각 연결. 듀얼 카메라 동시 촬영 가능.</li>
+                  <li><strong>3대 이상:</strong> USB 카메라 추가 연결 가능. 단, USB 카메라는 CSI 대비 지연 발생.</li>
+                </ul>
+                <div className="ibox"><strong>성능 고려:</strong> 카메라 수가 늘면 CPU 부하 증가. Hailo NPU가 추론을 전담하므로 CPU 부담은 줄지만, 2대 이상 동시 Full HD 처리 시 <strong>8GB RAM이 필수</strong>입니다.</div>
+                <p>산업 현장에서 4대 이상 필요 시 RPi 여러 대를 네트워크로 연결하는 분산 구조를 권장합니다.</p>
               </div>
             </div>
           </div>
