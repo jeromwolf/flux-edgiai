@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# flux-edgiai
+
+**엣지 AI 교육 Q&A 참고자료** — RPi5 + Hailo-8L NPU + ONNX Runtime
+
+> 라즈베리파이 5 × Hailo-8L NPU 엣지 AI 교육을 위한 참고 사이트 · 핵심 개념 · 용어 정리 · 예상 질문 모음
+
+## Live
+
+https://flux-edgiai.vercel.app
+
+## Features
+
+- **참고 URL 모음** (69개) — 공식 문서, 튜토리얼, 한국어 커뮤니티, 기업 블로그, 용어 사전
+- **엣지 AI 핵심 개념** — Cloud AI vs Edge AI 비교, 장점 정리
+- **NPU 핵심 개념** — GPU vs NPU 비교, RPi5 + Hailo-8L 하드웨어 스펙
+- **ONNX Runtime** — ONNX 포맷 설명, RPi 설치 가이드, Hailo 비교
+- **핵심 용어 정리** (10개) — 온디바이스 AI, 추론, 학습, 양자화, TOPS, HEF, GStreamer 등
+- **교육 커리큘럼** — DAY 1~4 + 최종 프로젝트 구성안
+- **Q&A** (16개) — 청중 예상 질문과 핵심 답변 아코디언
+
+## Tech Stack
+
+- [Next.js 16](https://nextjs.org/) (App Router, TypeScript)
+- Custom CSS (CSS Variables)
+- [Vercel](https://vercel.com/) 자동 배포
+- Google Fonts (JetBrains Mono, Noto Sans KR, Syne)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# 의존성 설치
+npm install
+
+# 개발 서버
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# 프로덕션 빌드
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+http://localhost:3000 에서 확인
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`main` 브랜치에 push하면 Vercel이 자동으로 빌드 & 배포합니다.
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/app/
+├── layout.tsx      # 루트 레이아웃 (메타데이터, 폰트)
+├── page.tsx        # 메인 페이지 (전체 콘텐츠)
+├── globals.css     # 전체 스타일
+└── favicon.ico
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
