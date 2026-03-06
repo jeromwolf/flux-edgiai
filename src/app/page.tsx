@@ -156,6 +156,44 @@ export default function Home() {
                   </div>
                 </a>
               </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://www.raspberrypi.com/documentation/accessories/ai-kit.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83E\uDD16"}</span>
+                  <div>
+                    <span className="url-title">AI Kit 공식 문서</span>
+                    <span className="url-desc">
+                      Hailo-8L M.2 모듈 포함 AI Kit 공식 설치 및 사용 가이드
+                    </span>
+                    <span className="url-addr">
+                      raspberrypi.com/documentation/accessories/ai-kit.html
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://www.raspberrypi.com/documentation/accessories/ai-hat-plus.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83C\uDFA9"}</span>
+                  <div>
+                    <span className="url-title">AI HAT+ 공식 문서</span>
+                    <span className="url-desc">
+                      13 TOPS(Hailo-8L) 및 26 TOPS(Hailo-8) AI HAT+ 공식 문서
+                    </span>
+                    <span className="url-addr">
+                      raspberrypi.com/documentation/accessories/ai-hat-plus.html
+                    </span>
+                  </div>
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -220,6 +258,107 @@ export default function Home() {
                       엣지 AI 가속기 제품군 · 소프트웨어 스택 · 개발자 리소스
                     </span>
                     <span className="url-addr">hailo.ai</span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://github.com/hailo-ai/hailo-rpi5-examples"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDCA1"}</span>
+                  <div>
+                    <span className="url-title">
+                      Hailo RPi5 공식 예제 (GitHub)
+                    </span>
+                    <span className="url-desc">
+                      실시간 객체 감지, 포즈 추정 등 RPi5용 Python 예제 모음
+                    </span>
+                    <span className="url-addr">
+                      github.com/hailo-ai/hailo-rpi5-examples
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://github.com/hailo-ai/hailort"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\u2699\uFE0F"}</span>
+                  <div>
+                    <span className="url-title">
+                      HailoRT 추론 프레임워크 (GitHub)
+                    </span>
+                    <span className="url-desc">
+                      Hailo 디바이스용 오픈소스 경량 고성능 추론 프레임워크
+                    </span>
+                    <span className="url-addr">
+                      github.com/hailo-ai/hailort
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://github.com/hailo-ai/tappas"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDD27"}</span>
+                  <div>
+                    <span className="url-title">
+                      TAPPAS GStreamer 프레임워크 (GitHub)
+                    </span>
+                    <span className="url-desc">
+                      GStreamer 기반 고성능 AI 파이프라인 템플릿 (객체 감지, 얼굴
+                      인식 등)
+                    </span>
+                    <span className="url-addr">
+                      github.com/hailo-ai/tappas
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://community.hailo.ai/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDCAC"}</span>
+                  <div>
+                    <span className="url-title">Hailo 커뮤니티 포럼</span>
+                    <span className="url-desc">
+                      RPi5 설정, 모델 변환, 오류 해결을 논의하는 공식 커뮤니티
+                    </span>
+                    <span className="url-addr">community.hailo.ai</span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://hailo.ai/developer-zone/documentation/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDCCB"}</span>
+                  <div>
+                    <span className="url-title">Hailo 개발자 문서</span>
+                    <span className="url-desc">
+                      AI 프로세서 전체 문서, 데이터시트, 컴파일러 가이드 (회원
+                      등록 필요)
+                    </span>
+                    <span className="url-addr">
+                      hailo.ai/developer-zone/documentation/
+                    </span>
                   </div>
                 </a>
               </li>
@@ -330,6 +469,49 @@ export default function Home() {
                   </div>
                 </a>
               </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://onnxruntime.ai/docs/performance/model-optimizations/quantization.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDD2C"}</span>
+                  <div>
+                    <span className="url-title">
+                      ONNX Runtime 양자화(Quantization) 가이드
+                    </span>
+                    <span className="url-desc">
+                      INT8 동적/정적 양자화로 엣지 배포 최적화하는 공식 가이드
+                    </span>
+                    <span className="url-addr">
+                      onnxruntime.ai/docs/.../quantization.html
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://github.com/microsoft/Olive"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83E\uDED2"}</span>
+                  <div>
+                    <span className="url-title">
+                      Microsoft Olive 모델 최적화 툴
+                    </span>
+                    <span className="url-desc">
+                      ONNX Runtime용 모델 변환, 양자화, 최적화를 자동화하는 CLI
+                      툴체인
+                    </span>
+                    <span className="url-addr">
+                      github.com/microsoft/Olive
+                    </span>
+                  </div>
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -423,6 +605,114 @@ export default function Home() {
                   </div>
                 </a>
               </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://github.com/Seeed-Projects/Tutorial-of-AI-Kit-with-Raspberry-Pi-From-Zero-to-Hero"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDE80"}</span>
+                  <div>
+                    <span className="url-title">
+                      AI Kit 종합 실습 (Zero to Hero)
+                    </span>
+                    <span className="url-desc">
+                      RPi AI Kit으로 TensorFlow, Hailo NPU, Ultralytics 단계별
+                      종합 실습
+                    </span>
+                    <span className="url-addr">
+                      github.com/Seeed-Projects/Tutorial-of-AI-Kit...
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://wiki.seeedstudio.com/tutorial_of_ai_kit_with_raspberrypi5_about_yolov8n_object_detection/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\u26A1"}</span>
+                  <div>
+                    <span className="url-title">
+                      YOLOv8n 객체 감지 136fps 달성 (Seeed Wiki)
+                    </span>
+                    <span className="url-desc">
+                      136.7fps 달성 사례 포함 YOLOv8n 학습부터 RPi5 배포까지 전
+                      과정
+                    </span>
+                    <span className="url-addr">
+                      wiki.seeedstudio.com/.../yolov8n_object_detection/
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://core-electronics.com.au/guides/yolo-object-detection-on-the-raspberry-pi-ai-hat-writing-custom-python/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDC0D"}</span>
+                  <div>
+                    <span className="url-title">
+                      YOLO 커스텀 Python 실습 (Core Electronics)
+                    </span>
+                    <span className="url-desc">
+                      AI HAT+에서 커스텀 Python으로 YOLO 객체 감지 파이프라인 작성
+                    </span>
+                    <span className="url-addr">
+                      core-electronics.com.au/.../yolo-object-detection...
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://datarootlabs.com/blog/hailo-ai-kit-raspberry-pi-5-setup-and-computer-vision-pipelines"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDCCA"}</span>
+                  <div>
+                    <span className="url-title">
+                      Hailo AI Kit CV 파이프라인 (DataRootLabs)
+                    </span>
+                    <span className="url-desc">
+                      YOLOv5 인스턴스 분할 + 옵티컬 플로우 트래킹 실전 구현
+                    </span>
+                    <span className="url-addr">
+                      datarootlabs.com/blog/hailo-ai-kit...
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://docs.pytorch.org/tutorials/intermediate/realtime_rpi.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDD25"}</span>
+                  <div>
+                    <span className="url-title">
+                      PyTorch 공식 RPi 실시간 추론 (40fps)
+                    </span>
+                    <span className="url-desc">
+                      MobileNetV2를 RPi 4/5에서 최대 40fps 실시간 실행하는 공식
+                      튜토리얼
+                    </span>
+                    <span className="url-addr">
+                      docs.pytorch.org/.../realtime_rpi.html
+                    </span>
+                  </div>
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -512,6 +802,254 @@ export default function Home() {
                     </span>
                     <span className="url-addr">
                       cafe.naver.com/cortexsh/6453
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://tutorials.pytorch.kr/intermediate/realtime_rpi.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDD25"}</span>
+                  <div>
+                    <span className="url-title">
+                      파이토치 한국어 — RPi 실시간 추론 튜토리얼
+                    </span>
+                    <span className="url-desc">
+                      MobileNetV2 양자화로 RPi에서 30fps 실시간 추론 공식 한국어
+                      가이드
+                    </span>
+                    <span className="url-addr">
+                      tutorials.pytorch.kr/.../realtime_rpi.html
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://tutorials.pytorch.kr/advanced/super_resolution_with_onnxruntime.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDD04"}</span>
+                  <div>
+                    <span className="url-title">
+                      파이토치 한국어 — ONNX 변환 튜토리얼
+                    </span>
+                    <span className="url-desc">
+                      PyTorch 모델을 ONNX로 변환하고 ONNX Runtime에서 실행하는
+                      한국어 가이드
+                    </span>
+                    <span className="url-addr">
+                      tutorials.pytorch.kr/.../super_resolution...
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://community.hailo.ai/t/topic/7190"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDC64"}</span>
+                  <div>
+                    <span className="url-title">
+                      Hailo 커뮤니티 한국어 — RPi5 얼굴인식
+                    </span>
+                    <span className="url-desc">
+                      한국 개발자의 RPi5 + Hailo-8L 얼굴/사람 인식 부저 연동
+                      실전 스레드
+                    </span>
+                    <span className="url-addr">
+                      community.hailo.ai/t/topic/7190
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://www.aitimes.com/news/articleView.html?idxno=160363"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDCF0"}</span>
+                  <div>
+                    <span className="url-title">
+                      AI타임스 — 라즈베리파이 Hailo AI 가속기
+                    </span>
+                    <span className="url-desc">
+                      RPi5 AI Kit 출시 기사 — Hailo-8L 13 TOPS 스펙, 가격, 시장
+                      분석
+                    </span>
+                    <span className="url-addr">
+                      aitimes.com/news/articleView.html?idxno=160363
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://velog.io/@dust_potato/ONNX%EB%9E%80-1-%EA%B8%B0%EB%B3%B8-%EC%84%A4%EB%AA%85%EA%B3%BC-%EC%9B%90%EB%A6%AC"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\u270F\uFE0F"}</span>
+                  <div>
+                    <span className="url-title">
+                      ONNX란? 기본 설명과 원리 (Velog)
+                    </span>
+                    <span className="url-desc">
+                      ONNX 개념, computation graph, PyTorch 변환 코드 예시 한국어
+                      정리
+                    </span>
+                    <span className="url-addr">
+                      velog.io/@dust_potato/ONNX란...
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://pytorch.kr/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83C\uDFE0"}</span>
+                  <div>
+                    <span className="url-title">
+                      PyTorch 한국 사용자 모임
+                    </span>
+                    <span className="url-desc">
+                      파이토치 한국 커뮤니티 공식 사이트 — 한국어 문서, 스터디,
+                      번역 프로젝트
+                    </span>
+                    <span className="url-addr">pytorch.kr</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* 엣지 AI 도구 · 프레임워크 */}
+          <div className="url-group">
+            <div className="url-gh dev">
+              {"\uD83E\uDDE9"} 엣지 AI 도구 {"\u00B7"} 프레임워크
+            </div>
+            <ul className="url-list">
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://github.com/openvinotoolkit/openvino"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDD37"}</span>
+                  <div>
+                    <span className="url-title">
+                      OpenVINO 추론 최적화 툴킷 (Intel)
+                    </span>
+                    <span className="url-desc">
+                      Intel 공식 AI 추론 최적화 — 라즈베리파이 포함 다양한 엣지
+                      디바이스 지원
+                    </span>
+                    <span className="url-addr">
+                      github.com/openvinotoolkit/openvino
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://ubuntu.com/blog/hackers-guide-to-the-raspberry-pi-ai-kit-on-ubuntu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDC27"}</span>
+                  <div>
+                    <span className="url-title">
+                      Ubuntu RPi AI Kit 가이드
+                    </span>
+                    <span className="url-desc">
+                      Ubuntu 24.04에서 Hailo-8L AI Kit Docker 방식 설정 가이드
+                    </span>
+                    <span className="url-addr">
+                      ubuntu.com/blog/hackers-guide-to-the-raspberry-pi-ai-kit...
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://github.com/canonical/pi-ai-kit-ubuntu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDC33"}</span>
+                  <div>
+                    <span className="url-title">
+                      Ubuntu RPi AI Kit Docker 예제 (GitHub)
+                    </span>
+                    <span className="url-desc">
+                      Ubuntu에서 Docker 사용 Raspberry Pi AI Kit 실행 Canonical
+                      공식 예제
+                    </span>
+                    <span className="url-addr">
+                      github.com/canonical/pi-ai-kit-ubuntu
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://github.com/SharpAI/DeepCamera"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDCF9"}</span>
+                  <div>
+                    <span className="url-title">
+                      오픈소스 AI CCTV 플랫폼 — DeepCamera
+                    </span>
+                    <span className="url-desc">
+                      얼굴 인식, 낙상 감지, 차량 감지, Person Re-ID 지원
+                      오픈소스 시스템
+                    </span>
+                    <span className="url-addr">
+                      github.com/SharpAI/DeepCamera
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li className="url-item">
+                <a
+                  className="url-link"
+                  href="https://mlcommons.org/working-groups/benchmarks/tiny/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="url-icon">{"\uD83D\uDCCF"}</span>
+                  <div>
+                    <span className="url-title">
+                      MLPerf Tiny 벤치마크 (MLCommons)
+                    </span>
+                    <span className="url-desc">
+                      마이크로컨트롤러 등 극저전력 시스템을 위한 공식 ML 성능
+                      벤치마크
+                    </span>
+                    <span className="url-addr">
+                      mlcommons.org/working-groups/benchmarks/tiny/
                     </span>
                   </div>
                 </a>
